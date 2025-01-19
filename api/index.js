@@ -13,11 +13,21 @@ mongoose
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('MongoDB connection error:', err));
 
-// Basic route
+// Basic Route
 app.get('/', (req, res) => {
     res.send({ message: 'MongoDB is connected!' });
 });
 
 // Vercel-specific export
-const server = createServer(app); // Create HTTP server for Vercel
+const server = createServer(app);
+
+// Check if running locally or on Vercel
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3000;
+    server.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}
+
+// Export for Vercel
 module.exports = (req, res) => server.emit('request', req, res);
