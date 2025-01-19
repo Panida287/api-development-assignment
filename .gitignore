@@ -35,3 +35,4 @@ coverage/
 # System files
 *.bak
 *.orig
+.vercel
