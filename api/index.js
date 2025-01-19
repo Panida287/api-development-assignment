@@ -8,15 +8,24 @@ app.use(express.json()); // Middleware to parse JSON
 
 // MongoDB Connection
 const mongoURI = process.env.MONGO_URI;
+
 mongoose
     .connect(mongoURI)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((err) => console.error('MongoDB connection error:', err));
+    .then(() => console.log('Connected to Database'))
+    .catch((error) => {
+        console.error('Database connection error:', error);
+    });
 
-// Basic Route
 app.get('/', (req, res) => {
-    res.send({ message: 'MongoDB is connected!' });
+    res.status(200).json({ message: 'API is running!' });
 });
+
+
+const categoryRouter = require('./routes/categoryRoutes');
+app.use('/categories', categoryRouter)
+
+const movieRouter = require('./routes/movieRoutes');
+app.use('/movies', movieRouter)
 
 // Vercel-specific export
 const server = createServer(app);

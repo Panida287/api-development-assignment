@@ -1,0 +1,29 @@
+GET http://localhost:3000/movies
+
+###
+GET http://localhost:3000/movies/678d7689c4855be0471f37e5
+
+###
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+  "title": "Heartstrings",
+  "year": 2022,
+  "category": "Romance"
+}
+
+
+###
+PUT http://localhost:3000/movies/678d7a3c1c00041f5db3c2a8
+Content-Type: application/json
+
+{
+  "title": "Heartstrings",
+  "year": 2021,
+  "category": "Romance"
+}
+
+
+###
+DELETE http://localhost:3000/movies/678d7689c4855be0471f37e5
