@@ -16,21 +16,19 @@ mongoose
         console.error('Database connection error:', error);
     });
 
-app.get('/', (req, res) => {
-    res.status(200).json({ message: 'API is running!' });
-});
+const movieRouter = require('./routes/movieRoutes');
+app.use('/movies', movieRouter)
 
+const directorRouter = require('./routes/directorRoutes');
+app.use('/directors', directorRouter)
 
 const categoryRouter = require('./routes/categoryRoutes');
 app.use('/categories', categoryRouter)
 
-const movieRouter = require('./routes/movieRoutes');
-app.use('/movies', movieRouter)
 
 // Vercel-specific export
 const server = createServer(app);
 
-// Check if running locally or on Vercel
 if (process.env.NODE_ENV !== 'production') {
     const PORT = process.env.PORT || 3000;
     server.listen(PORT, () => {
