@@ -24,6 +24,8 @@ app.get('/', (req, res) => {
         message: `Welcome to Panida's first API!`,
         availableEndpoints: [
             '/auth/login',
+            '/auth/register',
+            '/auth/logout',
             '/movies',
             '/directors',
         ],
