@@ -1,10 +1,10 @@
-require('dotenv').config(); // Load environment variables
+require('dotenv').config();
 const mongoose = require('mongoose');
 const express = require('express');
 const { createServer } = require('http'); // For Vercel compatibility
 
 const app = express();
-app.use(express.json()); // Middleware to parse JSON
+app.use(express.json());
 
 // MongoDB Connection
 const mongoURI = process.env.MONGO_URI;
@@ -21,10 +21,6 @@ app.use('/movies', movieRouter)
 
 const directorRouter = require('./routes/directorRoutes');
 app.use('/directors', directorRouter)
-
-const categoryRouter = require('./routes/categoryRoutes');
-app.use('/categories', categoryRouter)
-
 
 // Vercel-specific export
 const server = createServer(app);

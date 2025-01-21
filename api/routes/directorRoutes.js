@@ -9,7 +9,6 @@ router.get('/', async (req, res) => {
     try {
         let genderFilter = {};
 
-        // Validate gender if provided
         if (gender) {
             const formattedGender = gender.toLowerCase();
             if (!['male', 'female'].includes(formattedGender)) {
@@ -18,15 +17,12 @@ router.get('/', async (req, res) => {
             genderFilter = { gender: formattedGender };
         }
 
-        // Find directors with the filter applied
         const directors = await Director.find(genderFilter);
 
-        // Check if no directors found
         if (!directors.length) {
             return res.status(404).json({ error: 'No directors found.' });
         }
 
-        // Return the list of directors
         res.status(200).json(directors);
     } catch (err) {
         res.status(500).json({ error: err.message });

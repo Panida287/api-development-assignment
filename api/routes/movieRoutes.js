@@ -29,8 +29,8 @@ router.get('/', async (req, res) => {
         }
 
         let query = Movie.find({ ...directorFilter, ...categoryFilter })
-            .populate('director') // Populates the `director` field
-            .populate('category'); // Populates the `category` field
+            .populate('director')
+            .populate('category');
 
         if (limit) {
             const parsedLimit = parseInt(limit, 10);
@@ -46,12 +46,10 @@ router.get('/', async (req, res) => {
     }
 });
 
-
-// Getting one movie
 // Getting one movie
 router.get('/:id', getMovie, (req, res) => {
     try {
-        res.status(200).json(res.movie); // Use res.movie set by getMovie middleware
+        res.status(200).json(res.movie);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
@@ -160,7 +158,6 @@ router.put('/:id', getMovie, async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
-
 
 // Deleting one movie
 router.delete('/:id', getMovie, async (req, res) => {
