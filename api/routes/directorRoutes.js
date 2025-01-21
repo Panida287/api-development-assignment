@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Director = require('../models/director');
+const authenticateToken = require('../authentication/authMiddleware/authenticateToken');
 
 // Getting all directors or filter through gender
 router.get('/', async (req, res) => {

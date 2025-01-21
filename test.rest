@@ -1,20 +1,24 @@
-GET http://localhost:3000/movies?limit=2
-
+GET http://localhost:3000/movies
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkthdHJpbmUgRmluc3RhZCIsImlhdCI6MTczNzQ5MDg4OCwiZXhwIjoxNzM3NDkxNzg4fQ.jQ0EGJcPJF9Dqv-FG0WgZJDw9OovfkLM8yDcbFEpjiU
 ###
 GET http://localhost:3000/movies/678ebbc58b76372753abaa7a
 
 ###
-POST http://localhost:3000/movies
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "title": "test3",
-    "year": 2010,
-    "category": "horror",
-    "director": {
-        "name": "Katrine finstad",
-        "gender": "female"
-    }
+    "username": "Katrine Finstad",
+    "password": "12345678"
+}
+
+###
+DELETE http://localhost:3000/auth/logout
+Content-Type: application/json
+
+{
+  "token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkthdHJpbmUgRmluc3RhZCIsImlhdCI6MTczNzQ5MTYxMn0.3fiTXHR-b96B0KwuASJpcdUzl2WduCBqkZl8e6ZHwSQ"
 }
 
 ###

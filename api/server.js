@@ -1,4 +1,7 @@
 require('dotenv').config();
+
+console.log('Loaded SECRET:', process.env.SECRET);
+console.log('Loaded MONGO_URI:', process.env.MONGO_URI);
 const mongoose = require('mongoose');
 const express = require('express');
 const { createServer } = require('http'); // For Vercel compatibility
@@ -16,11 +19,27 @@ mongoose
         console.error('Database connection error:', error);
     });
 
+app.get('/', (req, res) => {
+    res.json({
+        message: `Welcome to Panida's first API!`,
+        availableEndpoints: [
+            '/auth/login',
+            '/movies',
+            '/directors',
+        ],
+    });
+});
+
+const authRouter = require('./authentication/authRoutes');
+app.use('/auth', authRouter);
+
 const movieRouter = require('./routes/movieRoutes');
 app.use('/movies', movieRouter)
 
 const directorRouter = require('./routes/directorRoutes');
 app.use('/directors', directorRouter)
+
+
 
 // Vercel-specific export
 const server = createServer(app);
