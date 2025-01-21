@@ -16,6 +16,18 @@ mongoose
         console.error('Database connection error:', error);
     });
 
+app.get('/', (req, res) => {
+    res.json({
+        message: `Welcome to Panida's first API!`,
+        availableEndpoints: [
+            '/auth/login',
+            '/movies',
+            '/directors',
+        ],
+    });
+});
+
+
 const movieRouter = require('./routes/movieRoutes');
 app.use('/movies', movieRouter)
 
