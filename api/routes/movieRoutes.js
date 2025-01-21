@@ -4,9 +4,10 @@ const Movie = require('../models/movie');
 const Category = require('../models/category');
 const Director = require('../models/director');
 const capitalizeWords = require('../utils/stringHelpers');
+const authenticateToken = require('../authentication/authMiddleware');
 
 // Getting all or filter through
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
     const { director, category, limit } = req.query;
 
     try {
@@ -47,7 +48,7 @@ router.get('/', async (req, res) => {
 });
 
 // Getting one movie
-router.get('/:id', getMovie, (req, res) => {
+router.get('/:id', getMovie, authenticateToken, (req, res) => {
     try {
         res.status(200).json(res.movie);
     } catch (err) {
@@ -57,7 +58,7 @@ router.get('/:id', getMovie, (req, res) => {
 
 
 // Creating one movie
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken,async (req, res) => {
     try {
         const { title, year, category, director } = req.body;
 
@@ -98,7 +99,7 @@ router.post('/', async (req, res) => {
 });
 
 // Updating one movie
-router.put('/:id', getMovie, async (req, res) => {
+router.put('/:id', getMovie, authenticateToken, async (req, res) => {
     const { title, year, category, director } = req.body;
 
     try {
@@ -160,7 +161,7 @@ router.put('/:id', getMovie, async (req, res) => {
 });
 
 // Deleting one movie
-router.delete('/:id', getMovie, async (req, res) => {
+router.delete('/:id', getMovie, authenticateToken, async (req, res) => {
     try {
         await res.movie.deleteOne();
         res.json({ message: 'Movie removed' });
