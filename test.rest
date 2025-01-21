@@ -1,0 +1,36 @@
+GET http://localhost:3000/movies?limit=2
+
+###
+GET http://localhost:3000/movies/678ebbc58b76372753abaa7a
+
+###
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+    "title": "test3",
+    "year": 2010,
+    "category": "horror",
+    "director": {
+        "name": "Katrine finstad",
+        "gender": "female"
+    }
+}
+
+###
+PUT http://localhost:3000/movies/678ebbc58b76372753abaa7a
+Content-Type: application/json
+
+{
+  "title": "",
+  "year": null,
+  "category": "",
+  "director": {
+    "name": " fenris finstad",
+    "gender": "female"
+  }
+}
+
+
+###
+DELETE http://localhost:3000/movies/678e83af03e0cd23d8952429

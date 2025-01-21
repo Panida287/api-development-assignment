@@ -36,3 +36,6 @@ coverage/
 *.bak
 *.orig
 .vercel
+
+# test files
+.rest
