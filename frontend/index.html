@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <script type="module" src="src/js/main.js"></script>
+    <link rel="stylesheet" href="src/css/styles.css"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+</head>
+
+<body class="flex flex-col justify-center items-center overflow-auto">
+
+<!-- Movies Table -->
+<div id="movies-container" class="w-[90%] max-w-[800px] mt-40 mb-16 bg-card backdrop-blur-2xl p-6 rounded-lg">
+    <h2 class="text-accent font-h text-center text-xl font-bold mb-4">Movies List</h2>
+    <table class="w-full text-left border-collapse">
+        <thead>
+        <tr>
+            <th class="text-text font-bold py-2 px-4 border-b border-gray-300">Title</th>
+            <th class="text-text font-bold py-2 px-4 border-b border-gray-300">Year</th>
+            <th class="text-text font-bold py-2 px-4 border-b border-gray-300">Category</th>
+            <th class="text-text font-bold py-2 px-4 border-b border-gray-300">Director</th>
+        </tr>
+        </thead>
+        <template id="movies-template">
+            <tbody id="movies-table-body">
+                <!-- Placeholder rows -->
+                <tr>
+                    <td class="text-text py-2 px-4 border-b border-gray-300">Placeholder Title</td>
+                    <td class="text-text py-2 px-4 border-b border-gray-300">2022</td>
+                    <td class="text-text py-2 px-4 border-b border-gray-300">Category</td>
+                    <td class="text-text py-2 px-4 border-b border-gray-300">Director</td>
+                </tr>
+            </tbody>
+        </template>
+    </table>
+</div>
+
+<!-- Create movie Modal -->
+<div id="create-container"
+     class="w-[70%] max-w-[600px] p-8 mb-[100px] bg-card backdrop-blur-2xl rounded-lg">
+    <form id="listing-form"
+          class="flex flex-col gap-4">
+        <h2 id="create-movie-title"
+            class="font-h text-accent w-full justify-center items-center text-center font-bold">
+            ADD NEW MOVIE
+        </h2>
+        <!-- Movie Title -->
+        <div>
+            <label class="text-text" for="movie-title">Movie title</label>
+            <input type="text"
+                    id="movie-title"
+                    name="movie-title"
+                    required
+                    class="border w-full border-gray-300 text-text p-2 mt-2 rounded-md bg-transparent"/>
+        </div>
+
+        <!-- category -->
+        <label class="text-text" for="category">Category</label>
+        <select id="category"
+                name="category"
+                required
+                class="border w-full text-text border-gray-300 p-2 mt-2 rounded-md bg-transparent">
+            <option value="" disabled selected>Select Category</option>
+        </select>
+
+        <!-- director -->
+        <label class="text-text" for="director">Director</label>
+        <select id="director"
+                name="director"
+                required
+                class="border w-full text-text border-gray-300 p-2 mt-2 rounded-md bg-transparent">
+            <option value="" disabled selected>Select Director</option>
+        </select>
+
+        <!-- Buttons -->
+        <div class="flex justify-between mt-4">
+            <!-- Submit Button -->
+            <button type="submit" class="button">
+                Submit
+            </button>
+
+            <!-- Cancel Button -->
+            <button type="button" id="cancel-create-btn" class="button">
+                Cancel
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
