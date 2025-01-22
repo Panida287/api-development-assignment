@@ -134,7 +134,7 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
   
 ---
 - Get Movie by ID
-    - `GET` GET /movies/&lt;id>
+    - `GET` /movies/&lt;id>
     - Headers:
       ```plaintext
       Authorization: Bearer <accessToken>
