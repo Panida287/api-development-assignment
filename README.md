@@ -31,6 +31,9 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
     - _Refresh token_ : `BASE_URL`/auth/refresh
   - [Movies](#Movies)
     - _movies_ `BASE_URL`/movies
+    
+  - [Directors](#Directors)
+    - _Directors_ `BASE_URL`/directors
 
 ## Usage
 - [Authentication](#Authentication)
@@ -160,15 +163,18 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
     - Response
       ```json
       {
+        "_id": "movie id"
         "title": "Example Movie",
         "year": 2023,
+        "category": {
+          "_id": "category id"
+          "category_name": "Drama"
+        }
         "director": {
+          "_id": "director id"
           "name": "Example Director",
           "gender": "female"
         },
-        "category": {
-          "category_name": "Drama"
-        }
       }
 ---
 - Create a movie
@@ -181,11 +187,11 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
     {
       "title": "Example Movie",
       "year": 2023,
+      "category": "Drama"
       "director": {
         "name": "Example Director",
         "gender": "female" //Value must be "male" or "female"
       },
-      "category": "Drama"
     }
 
   - Response
@@ -195,13 +201,15 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
       "movie": {
         "title": "Example Movie",
         "year": 2023,
+        "category": {
+          "_id": "category id"
+          "category_name": "Drama"
+        }
         "director": {
+          "_id": "director id"
           "name": "Example Director",
           "gender": "female"
         },
-        "category": {
-          "category_name": "Drama"
-        }
       }
     }
 ---
@@ -229,13 +237,15 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
       "movie": {
         "title": "Updated Movie Title",
         "year": 2023,
+        "category": {
+          "_id": "Category id"
+          "category_name": "Comedy"
+        }
         "director": {
+          "_id": "Director-id"
           "name": "Updated Director",
           "gender": "male"
         },
-        "category": {
-          "category_name": "Comedy"
-        }
       }
     }
 ---
@@ -250,3 +260,34 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
     HTTP/1.1 204 No Content
     
 ---
+
+### Directors
+- Get All Directors
+  - `GET` /directors
+    - Headers:
+
+      Authorization: Bearer <accessToken>
+
+      - Query Parameters (optional):
+        - Prop: <span style="background-color:#1B3B51; color:#53B3F3; padding:2px; border-radius:4px; margin-right:4px">
+          gender
+          </span>
+          Type:
+          <span style="background-color:#1B3B51; color:white; padding:2px; border-radius:4px; margin-right:4px">
+          String
+          </span>
+          Usage: Filter director by gender [male, female]
+          <br><br>
+          _An example query filtering:_
+
+          `GET` /directors?gender=&lt;male/female>
+          <br><br>
+
+    - Response
+
+    ```json
+    {
+    "_id": "Director id",
+    "name": "Director name",
+    "gender": "female"
+    }

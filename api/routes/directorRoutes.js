@@ -4,7 +4,7 @@ const Director = require('../models/director');
 const authenticateToken = require('../authentication/authMiddleware');
 
 // Getting all directors or filter through gender
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
     const { gender } = req.query;
 
     try {
@@ -12,9 +12,6 @@ router.get('/', async (req, res) => {
 
         if (gender) {
             const formattedGender = gender.toLowerCase();
-            if (!['male', 'female'].includes(formattedGender)) {
-                return res.status(400).json({ error: 'Gender must be either "male" or "female".' });
-            }
             genderFilter = { gender: formattedGender };
         }
 

@@ -1,5 +1,5 @@
-GET http://localhost:3000/movies
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkthdHJpbmUgRmluc3RhZCIsImlhdCI6MTczNzQ5MDg4OCwiZXhwIjoxNzM3NDkxNzg4fQ.jQ0EGJcPJF9Dqv-FG0WgZJDw9OovfkLM8yDcbFEpjiU
+GET http://localhost:3000/directors
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkthdHJpbmUgRmluc3RhZCIsImlhdCI6MTczNzU1MTI0MCwiZXhwIjoxNzM3NTUyMTQwfQ.R6T4aiQ2ISuuBykXSm9JHD5dGmFzTuiQU5QyE3M8Pjk
 ###
 GET http://localhost:3000/movies/678ebbc58b76372753abaa7a
 
