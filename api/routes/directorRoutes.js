@@ -1,18 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const Director = require('../models/director');
-const authenticateToken = require('../authentication/authMiddleware');
 
 // Getting all directors or filter through gender
-router.get('/', authenticateToken, async (req, res) => {
+router.get('/',  async (req, res) => {
     const { gender } = req.query;
 
     try {
         let genderFilter = {};
 
         if (gender) {
-            const formattedGender = gender.toLowerCase();
-            genderFilter = { gender: formattedGender };
+            genderFilter = { gender: gender };
         }
 
         const directors = await Director.find(genderFilter);
