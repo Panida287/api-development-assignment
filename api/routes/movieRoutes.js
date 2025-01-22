@@ -3,11 +3,10 @@ const router = express.Router();
 const Movie = require('../models/movie');
 const Category = require('../models/category');
 const Director = require('../models/director');
-const capitalizeWords = require('../utils/stringHelpers');
 const authenticateToken = require('../authentication/authMiddleware');
 
 // Getting all or filter through
-router.get('/', authenticateToken, async (req, res) => {
+router.get('/', async (req, res) => {
     const { director, category, limit } = req.query;
 
     try {
@@ -48,7 +47,7 @@ router.get('/', authenticateToken, async (req, res) => {
 });
 
 // Getting one movie
-router.get('/:id', getMovie, authenticateToken, (req, res) => {
+router.get('/:id', getMovie,  (req, res) => {
     try {
         res.status(200).json(res.movie);
     } catch (err) {
@@ -58,28 +57,25 @@ router.get('/:id', getMovie, authenticateToken, (req, res) => {
 
 
 // Creating one movie
-router.post('/', authenticateToken,async (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
     try {
         const { title, year, category, director } = req.body;
-
-        const formattedCategory = capitalizeWords(category);
-        const formattedDirector = capitalizeWords(director.name);
 
         if (!director.gender || !['male', 'female'].includes(director.gender.toLowerCase())) {
             return res.status(400).json({ error: 'Gender must be either "male" or "female".' });
         }
 
-        let categoryDoc = await Category.findOne({ category_name: formattedCategory });
+        let categoryDoc = await Category.findOne({ category_name: new RegExp(`^${category}$`, 'i') });
         if (!categoryDoc) {
-            categoryDoc = new Category({ category_name: formattedCategory });
+            categoryDoc = new Category({ category_name: category });
             await categoryDoc.save();
         }
 
-        let directorDoc = await Director.findOne({ name: formattedDirector });
+        let directorDoc = await Director.findOne({ name: new RegExp(`^${director.name}$`, 'i') });
         if (!directorDoc) {
             directorDoc = new Director({
-                name: formattedDirector,
-                gender: director.gender.toLowerCase(),
+                name: director.name,
+                gender: director.gender,
             });
             await directorDoc.save();
         }
@@ -92,7 +88,12 @@ router.post('/', authenticateToken,async (req, res) => {
         });
 
         const newMovie = await movie.save();
-        res.status(201).json(newMovie);
+
+        const populatedMovie = await Movie.findById(newMovie._id)
+            .populate('director')
+            .populate('category');
+
+        res.status(201).json(populatedMovie);
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
@@ -114,33 +115,34 @@ router.put('/:id', getMovie, authenticateToken, async (req, res) => {
         }
 
         if (category) {
-            const formattedCategory = capitalizeWords(category);
-            let categoryDoc = await Category.findOne({ category_name: formattedCategory });
+
+            let categoryDoc = await Category.findOne({ category_name: new RegExp(`^${category}$`, 'i') });
             if (!categoryDoc) {
-                categoryDoc = new Category({ category_name: formattedCategory });
+
+                categoryDoc = new Category({ category_name: category });
                 await categoryDoc.save();
             }
             movie.category = categoryDoc._id;
         }
 
         if (director) {
-            const formattedDirector = capitalizeWords(director.name);
-
             if (!director.gender || !['male', 'female'].includes(director.gender.toLowerCase())) {
                 return res.status(400).json({ error: 'Gender must be either "male" or "female".' });
             }
 
-            let directorDoc = await Director.findOne({ name: formattedDirector });
+            let directorDoc = await Director.findOne({ name: new RegExp(`^${director.name}$`, 'i') });
 
             if (directorDoc) {
-                if (directorDoc.gender !== director.gender.toLowerCase()) {
-                    directorDoc.gender = director.gender.toLowerCase();
+
+                if (directorDoc.gender.toLowerCase() !== director.gender.toLowerCase()) {
+                    directorDoc.gender = director.gender;
                     await directorDoc.save();
                 }
             } else {
+
                 directorDoc = new Director({
-                    name: formattedDirector,
-                    gender: director.gender.toLowerCase(),
+                    name: director.name,
+                    gender: director.gender,
                 });
                 await directorDoc.save();
             }
@@ -159,6 +161,7 @@ router.put('/:id', getMovie, authenticateToken, async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
 
 // Deleting one movie
 router.delete('/:id', getMovie, authenticateToken, async (req, res) => {

@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "../node_modules/.bin/dotenv -e .env node server.js",
-    "dev": "../node_modules/.bin/dotenv -e .env nodemon server.js"
+    "start": "dotenv -e .env node server.js",
+    "dev": "dotenv -e .env nodemon server.js"
   },
   "keywords": [],
   "author": "",

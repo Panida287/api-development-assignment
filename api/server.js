@@ -39,10 +39,11 @@ app.use('/auth', authRouter);
 const movieRouter = require('./routes/movieRoutes');
 app.use('/movies', movieRouter)
 
+const categoryRouter = require('./routes/categoryRoutes');
+app.use('/categories', categoryRouter);
+
 const directorRouter = require('./routes/directorRoutes');
 app.use('/directors', directorRouter)
-
-
 
 // Vercel-specific export
 const server = createServer(app);

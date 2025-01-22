@@ -33,11 +33,16 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
     - _movies_ `BASE_URL`/movies
     
   - [Directors](#Directors)
-    - _Directors_ `BASE_URL`/directors
+    - _Directors_ `BASE_URL`/directors    
+    - 
+  - [Categories](#Categories)
+    - _Categories_ `BASE_URL`/categories
 
 ## Usage
 - [Authentication](#Authentication)
 - [Movies](#Movies)
+- [Categories](#Categories)
+- [Directors](#Directors)
 
 ### Authentication
 - Sign up
@@ -68,6 +73,7 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
   - Response:
     ```json
     {
+    "username": "yourusername"
     "accessToken": "yourAccessToken",
     "refreshToken": "yourRefreshToken"
     }
@@ -100,10 +106,8 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
 
 ### Movies
 - Get All Movies
-  - `GET` /movies
-    - Headers:
-
-      Authorization: Bearer <accessToken>
+  - `GET` /movies 
+  - _No authentication needed_
 
       - Query Parameters (optional):
         - Prop: `director` Type: `String` Usage: Filter by director name
@@ -135,26 +139,24 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
 ---
 - Get Movie by ID
     - `GET` /movies/&lt;id>
-    - Headers:
-      ```plaintext
-      Authorization: Bearer <accessToken>
+      - _No authentication needed_
 
-    - Response
-      ```json
-      {
-        "_id": "movie id"
-        "title": "Example Movie",
-        "year": 2023,
-        "category": {
-          "_id": "category id"
-          "category_name": "Drama"
-        }
-        "director": {
-          "_id": "director id"
-          "name": "Example Director",
-          "gender": "female"
-        },
-      }
+        - Response
+          ```json
+          {
+            "_id": "movie id"
+            "title": "Example Movie",
+            "year": 2023,
+            "category": {
+              "_id": "category id"
+              "category_name": "Drama"
+            }
+            "director": {
+              "_id": "director id"
+              "name": "Example Director",
+              "gender": "female"
+            },
+          }
 ---
 - Create a movie
   - `POST` /movies
@@ -243,9 +245,7 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
 ### Directors
 - Get All Directors
   - `GET` /directors
-    - Headers:
-
-      Authorization: Bearer <accessToken>
+  - _No authentication needed_
 
       - Query Parameters (optional):
         - Prop: `gender` Type: `String` Usage: Filter director by gender [male, female]
@@ -262,4 +262,19 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
     "_id": "Director id",
     "name": "Director name",
     "gender": "female"
+    }
+    
+    ---
+
+### Category
+- Get All Categories
+  - `GET` /categories
+  - _No authentication needed_
+
+    - Response
+
+    ```json
+    {
+    "_id": "Category id",
+    "category_name": "Category name",
     }
