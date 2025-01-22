@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: './.env' });
 
 console.log('Loaded SECRET:', process.env.SECRET);
 console.log('Loaded MONGO_URI:', process.env.MONGO_URI);
