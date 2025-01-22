@@ -7,15 +7,15 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
     appType: "mpa", // Multi-Page Application
-    base: "api-development-assignment", // Adjust if deploying under a subdirectory
+    base: "", // Adjust if deploying under a subdirectory
     build: {
         target: "modules", // Modern ES Modules target
         rollupOptions: {
             input: {
-                main: path.resolve(__dirname, "index.html"),
-                login: path.resolve(__dirname, "auth/login/index.html"),
-                register: path.resolve(__dirname, "auth/register/index.html"),
-                movie: path.resolve(__dirname, "movie/index.html"),
+                main: path.resolve(__dirname, "/"),
+                login: path.resolve(__dirname, "auth/login"),
+                register: path.resolve(__dirname, "auth/register"),
+                movie: path.resolve(__dirname, "movie"),
             },
         },
     },
