@@ -106,30 +106,9 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
       Authorization: Bearer <accessToken>
 
       - Query Parameters (optional):
-        - Prop: <span style="background-color:#1B3B51; color:#53B3F3; padding:2px; border-radius:4px; margin-right:4px">
-          director
-          </span>
-          Type: 
-          <span style="background-color:#1B3B51; color:white; padding:2px; border-radius:4px; margin-right:4px">
-          String
-          </span>
-          Usage: Filter by director name
-        - Prop: <span style="background-color:#1B3B51; color:#53B3F3; padding:2px; border-radius:4px; margin-right:4px">
-          category
-          </span>
-          Type: 
-          <span style="background-color:#1B3B51; color:white; padding:2px; border-radius:4px; margin-right:4px">
-          String
-          </span>
-          Usage: Filter by category
-        - Prop: <span style="background-color:#1B3B51; color:#53B3F3; padding:2px; border-radius:4px; margin-right:4px">
-          limit
-          </span>
-          Type: 
-          <span style="background-color:#1B3B51; color:white; padding:2px; border-radius:4px; margin-right:4px">
-          Number
-          </span>
-          Usage: Limit number of results
+        - Prop: `director` Type: `String` Usage: Filter by director name
+        - Prop: `category` Type: `String` Usage: Filter by category
+        - Prop: `limit` Type: `Number` Usage: Limit number of results
 <br><br>
       _An example query filtering:_
 
@@ -269,14 +248,7 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
       Authorization: Bearer <accessToken>
 
       - Query Parameters (optional):
-        - Prop: <span style="background-color:#1B3B51; color:#53B3F3; padding:2px; border-radius:4px; margin-right:4px">
-          gender
-          </span>
-          Type:
-          <span style="background-color:#1B3B51; color:white; padding:2px; border-radius:4px; margin-right:4px">
-          String
-          </span>
-          Usage: Filter director by gender [male, female]
+        - Prop: `gender` Type: `String` Usage: Filter director by gender [male, female]
           <br><br>
           _An example query filtering:_
 
