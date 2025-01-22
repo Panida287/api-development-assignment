@@ -1,7 +1,6 @@
 require('dotenv').config({ path: './.env' });
 
-console.log('Loaded SECRET:', process.env.SECRET);
-console.log('Loaded MONGO_URI:', process.env.MONGO_URI);
+const cors = require('cors');
 const mongoose = require('mongoose');
 const express = require('express');
 const { createServer } = require('http'); // For Vercel compatibility
@@ -9,7 +8,12 @@ const { createServer } = require('http'); // For Vercel compatibility
 const app = express();
 app.use(express.json());
 
-// MongoDB Connection
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 const mongoURI = process.env.MONGO_URI;
 
 mongoose
