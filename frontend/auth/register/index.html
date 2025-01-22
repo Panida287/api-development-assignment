@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <script type="module" src="../../src/js/main.js"></script>
+    <link rel="stylesheet" href="../../src/css/styles.css"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Register</title>
+</head>
+
+<body class="flex flex-col justify-center items-center overflow-auto md:flex-row">
+
+<!-- Register Modal -->
+<div class="register-form m-20 w-full max-w-[400px] p-8 bg-card backdrop-blur-xl rounded-lg shadow-lg">
+    <h1 class="text-text text-center font-semibold mb-6">REGISTER</h1>
+
+    <form name="register" class="flex flex-col gap-4">
+
+        <!-- Username -->
+        <div>
+            <label for="name" class="text-text">Username</label>
+            <input id="name"
+                    type="text"
+                    name="name"
+                    maxlength="20"
+                    required
+                    placeholder="Username"
+                    class="border w-full border-gray-300 text-text p-2 mt-2 rounded-md bg-transparent"/>
+        </div>
+
+        <!-- Password -->
+        <div>
+            <label for="password" class="text-text">Password</label>
+            <input type="password"
+                    name="password"
+                    id="password"
+                    minlength="8"
+                    placeholder="At least 8 characters"
+                    required
+                    class="border w-full border-gray-300 text-text p-2 mt-2 rounded-md bg-transparent"/>
+        </div>
+
+        <!-- Repeat Password -->
+        <div>
+            <label for="repeatPassword" class="text-text">Repeat Password</label>
+            <input type="password"
+                    name="repeatPassword"
+                    id="repeatPassword"
+                    minlength="8"
+                    required
+                    placeholder="Re-enter your password"
+                    class="border w-full border-gray-300 text-text p-2 mt-2 rounded-md bg-transparent"/>
+        </div>
+
+        <!-- Error Message -->
+        <p class="error-msg text-red-500 text-sm text-center">
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex justify-between mt-4">
+            <button type="submit" class="button w-full">Register</button>
+        </div>
+    </form>
+
+    <!-- Login Link -->
+    <div class="text-center mt-4 text-text">
+        <p>Already a member?</p>
+        <a href="/auth/login/" class="text-accent font-semibold hover:underline">
+            Login
+        </a>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div
+        class="register-success hidden flex-col absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-[300px] p-6 bg-card text-text rounded-lg shadow-lg text-center"
+>
+    <h2 class="font-bold mb-4">Registration Successful!</h2>
+    <a href="/auth/login/" class="text-sm underline hover:text-gray-200">
+        Proceed to Login
+    </a>
+</div>
+</body>
+</html>
