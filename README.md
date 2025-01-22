@@ -185,12 +185,12 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
   - Body:
     ```json
     {
-      "title": "Example Movie",
-      "year": 2023,
-      "category": "Drama"
+      "title": "Example Movie", //required
+      "year": 2023, //required
+      "category": "Drama" //required
       "director": {
-        "name": "Example Director",
-        "gender": "female" //Value must be "male" or "female"
+        "name": "Example Director", //required
+        "gender": "female" //required //Value must be "male" or "female"
       },
     }
 
