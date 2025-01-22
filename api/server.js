@@ -29,6 +29,7 @@ app.get('/', (req, res) => {
             '/auth/logout',
             '/movies',
             '/directors',
+            '/categories'
         ],
     });
 });
