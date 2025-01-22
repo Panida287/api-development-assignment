@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
         availableEndpoints: [
             '/auth/login',
             '/auth/register',
+            '/auth/refresh',
             '/auth/logout',
             '/movies',
             '/directors',
