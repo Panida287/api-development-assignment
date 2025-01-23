@@ -21,13 +21,11 @@ export async function login(username, password) {
         if (result?.username) {
             localStorage.setItem('username', result.username);
             localStorage.setItem('accessToken', result.accessToken);
-            localStorage.setItem('refreshToken', result.refreshToken);
         }
 
         return result;
     } catch (error) {
         console.error("Error during login", error);
-        errorContainer.innerHTML = ('error-msg');
-        throw error;
+        errorContainer.innerHTML = (error);
     }
 }
