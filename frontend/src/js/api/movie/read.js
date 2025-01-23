@@ -17,14 +17,6 @@ export async function getMovies( director = null, category = null, limit = null 
             },
         });
 
-        if (director) {
-            params.append("director", director);
-        }
-
-        if (category) {
-            params.append("category", category);
-        }
-
         if (!response.ok) {
             throw new Error(response.statusText);
         }
