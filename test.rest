@@ -1,5 +1,6 @@
-GET http://localhost:3000/categories
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkthdHJpbmUgRmluc3RhZCIsImlhdCI6MTczNzU2NDI2NCwiZXhwIjoxNzM3NTY1MTY0fQ.dQd-9E73-arnD1CsU_BiosUoJrz2MqWfGyMk9JbsMMg
+GET http://localhost:3000/movies?director=Panida%20Paethanom
+
+
 ###
 GET http://localhost:3000/movies/678ebbc58b76372753abaa7a
 

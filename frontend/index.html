@@ -15,8 +15,21 @@
 
 <h2 class="text-white w-full h-full z-10 text-center mt-20">Welcome <span id="username"></span></h2>
 
+<div class="flex items-center justify-center mt-20">
+    <label class="text-text p-4" for="director-dropdown">Director</label>
+    <select id="director-dropdown">
+        <option value="">All Directors</option>
+    </select>
+
+    <label class="text-text p-4" for="category-dropdown">Category</label>
+    <select id="category-dropdown">
+        <option value="">All Categories</option>
+    </select>
+    <button id="filter-button" class="button ml-5">Filter</button>
+</div>
+
 <!-- Movies Table -->
-<div id="movies-container" class="w-[90%] max-w-[800px] mt-20 mb-16 bg-card backdrop-blur-2xl p-6 rounded-lg">
+<div class="w-[90%] max-w-[800px] mt-4 mb-16 bg-card backdrop-blur-2xl p-6 rounded-lg">
     <h2 class="text-accent font-h text-center text-xl font-bold mb-4">Movies List</h2>
     <table class="w-full text-left border-collapse">
         <thead>
@@ -27,19 +40,20 @@
             <th class="text-text font-bold py-2 px-4 border-b border-gray-300">Director</th>
         </tr>
         </thead>
-        <template id="movies-template">
-            <tbody id="movies-table-body">
-                <!-- Placeholder rows -->
-                <tr>
-                    <td class="text-text py-2 px-4 border-b border-gray-300">Placeholder Title</td>
-                    <td class="text-text py-2 px-4 border-b border-gray-300">2022</td>
-                    <td class="text-text py-2 px-4 border-b border-gray-300">Category</td>
-                    <td class="text-text py-2 px-4 border-b border-gray-300">Director</td>
-                </tr>
-            </tbody>
-        </template>
+        <tbody id="movies-container">
+        </tbody>
     </table>
 </div>
+
+<template id="movies-template">
+    <tr>
+        <td class="text-text py-2 px-4 border-b border-gray-300 movie-title"></td>
+        <td class="text-text py-2 px-4 border-b border-gray-300 movie-year"></td>
+        <td class="text-text py-2 px-4 border-b border-gray-300 movie-category"></td>
+        <td class="text-text py-2 px-4 border-b border-gray-300 movie-director"></td>
+    </tr>
+</template>
+
 
 <!-- Create movie Modal -->
 <div id="create-container"
@@ -54,10 +68,10 @@
         <div>
             <label class="text-text" for="movie-title">Movie title</label>
             <input type="text"
-                    id="movie-title"
-                    name="movie-title"
-                    required
-                    class="border w-full border-gray-300 text-text p-2 mt-2 rounded-md bg-transparent"/>
+                   id="movie-title"
+                   name="movie-title"
+                   required
+                   class="border w-full border-gray-300 text-text p-2 mt-2 rounded-md bg-transparent"/>
         </div>
 
         <!-- category -->
