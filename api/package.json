@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "dotenv -e .env node server.js",
-    "dev": "dotenv -e .env nodemon server.js"
+    "dev": "dotenv -e .env nodemon server.js",
+    "build": "echo 'No build script necessary for this project'"
   },
   "keywords": [],
   "author": "",

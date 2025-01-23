@@ -39,6 +39,8 @@ exports.signUp = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
+    console.log('SECRET:', process.env.SECRET);
+    console.log('REFRESH_SECRET:', process.env.REFRESH_SECRET);
     const { username, password } = req.body;
 
     try {
