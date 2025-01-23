@@ -9,13 +9,13 @@ export default defineConfig({
     appType: "mpa", // Multi-Page Application
     base: "", // Adjust if deploying under a subdirectory
     build: {
-        target: "modules", // Modern ES Modules target
+        target: "esnext",
         rollupOptions: {
             input: {
-                main: path.resolve(__dirname, "/"),
-                login: path.resolve(__dirname, "auth/login"),
-                register: path.resolve(__dirname, "auth/register"),
-                movie: path.resolve(__dirname, "movie"),
+                main: path.resolve(__dirname, "index.html"), // Points to the main HTML file
+                login: path.resolve(__dirname, "auth/login/index.html"), // Correct entry for login
+                register: path.resolve(__dirname, "auth/register/index.html"), // Correct entry for register
+                movie: path.resolve(__dirname, "movie/index.html"), // Correct entry for movie
             },
         },
     },

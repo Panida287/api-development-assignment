@@ -1,32 +1,33 @@
-import {API_LOGIN} from '../../api/constants.js';
+import { API_LOGIN } from '../../api/constants.js';
 
 export async function login(username, password) {
     const errorContainer = document.querySelector(".error-msg");
 
     try {
-        const headers = new Headers({ 'Content-Type': 'application/json' });
         const response = await fetch(API_LOGIN, {
             method: 'POST',
-            headers: headers,
-            body: JSON.stringify({ username, password}),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
         });
 
         const result = await response.json();
 
         if (!response.ok) {
-            errorContainer.innerHTML = result.errors?.[0]?.error?.message;
+            throw new Error(result.message || 'Login failed');
         }
 
-        if (result.data?.username) {
-            localStorage.setItem('username', result.data?.username);
-            localStorage.setItem('accessToken', result.data.accessToken);
-            localStorage.setItem('accessToken', result.data.refreshToken);
+        if (result?.username) {
+            localStorage.setItem('username', result.username);
+            localStorage.setItem('accessToken', result.accessToken);
+            localStorage.setItem('refreshToken', result.refreshToken);
         }
 
         return result;
-
     } catch (error) {
         console.error("Error during login", error);
-        errorContainer.innerHTML = error;
+        errorContainer.innerHTML = ('error-msg');
+        throw error;
     }
 }
