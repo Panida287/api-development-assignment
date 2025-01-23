@@ -1,16 +1,22 @@
-import { login } from '../../api/auth/login.js'
+import { login } from '../../api/auth/login.js';
 
 export async function onLogin(event) {
     event.preventDefault();
 
-    const formData = {
-        username: document.getElementById('username').value,
-        password: document.getElementById('password').value,
-    };
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-    const result = await login(formData);
+    const errorContainer = document.querySelector(".error-msg");
 
-    if (result.data.username) {
-        console.log(result.data.username);
+    try {
+        const result = await login(username, password);
+
+        if (result?.username) {
+            console.log(`Logged in as: ${result.username}`);
+        }
+    } catch (error) {
+        // Display the error message from the API response
+        errorContainer.innerHTML = error.message;
     }
 }
+
