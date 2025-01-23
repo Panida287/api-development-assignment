@@ -15,6 +15,11 @@ exports.signUp = async (req, res) => {
         return res.status(400).json({ message: 'Password must be at least 8 characters long' });
     }
 
+    const regex = /^[a-zA-Z0-9_-]+$/;
+    if (!regex.test(username)) {
+        return res.status(400).json({ message: 'Username should not contain spaces or special characters' });
+    }
+
     try {
         const existingUser = await User.findOne({ username });
         if (existingUser) {
@@ -50,7 +55,7 @@ exports.login = async (req, res) => {
         const validPassword = await bcrypt.compare(password, user.password);
         if (!validPassword) return res.status(401).send({ message:'Invalid username'});
 
-        const accessToken = jwt.sign({ username }, process.env.SECRET, { expiresIn: '15m'});
+        const accessToken = jwt.sign({ username }, process.env.SECRET);
         const refreshToken = jwt.sign({ username }, process.env.REFRESH_SECRET);
 
         user.refreshTokens.push(refreshToken);
