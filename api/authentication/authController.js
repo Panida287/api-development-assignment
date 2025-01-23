@@ -55,7 +55,7 @@ exports.login = async (req, res) => {
         const validPassword = await bcrypt.compare(password, user.password);
         if (!validPassword) return res.status(401).send({ message:'Invalid username'});
 
-        const accessToken = jwt.sign({ username }, process.env.SECRET, { expiresIn: '15m'});
+        const accessToken = jwt.sign({ username }, process.env.SECRET);
         const refreshToken = jwt.sign({ username }, process.env.REFRESH_SECRET);
 
         user.refreshTokens.push(refreshToken);
