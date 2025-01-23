@@ -15,6 +15,11 @@ exports.signUp = async (req, res) => {
         return res.status(400).json({ message: 'Password must be at least 8 characters long' });
     }
 
+    const regex = /^[a-zA-Z0-9_-]+$/;
+    if (!regex.test(username)) {
+        return res.status(400).json({ message: 'Username should not contain spaces or special characters' });
+    }
+
     try {
         const existingUser = await User.findOne({ username });
         if (existingUser) {

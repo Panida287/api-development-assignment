@@ -4,11 +4,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikthd
 GET http://localhost:3000/movies/678ebbc58b76372753abaa7a
 
 ###
-POST http://localhost:3000/auth/login
+POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "username": "Katrine Finstad",
+    "username": "test1",
     "password": "12345678"
 }
 
