@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     try {
         let directorFilter = {};
         if (director) {
-            const directorDoc = await Director.findOne({ name: capitalizeWords(director) });
+            const directorDoc = await Director.findOne({ name: director });
             if (!directorDoc) {
                 return res.status(404).json({ error: 'Director not found' });
             }
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 
         let categoryFilter = {};
         if (category) {
-            const categoryDoc = await Category.findOne({ category_name: capitalizeWords(category) });
+            const categoryDoc = await Category.findOne({ category_name: category } );
             if (!categoryDoc) {
                 return res.status(404).json({ error: 'Category not found' });
             }
