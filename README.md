@@ -249,7 +249,7 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
     "name": "Director name",
     }
     
-    ---
+  ---
 
 ### Category
 - Get All Categories
