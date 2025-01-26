@@ -4,6 +4,16 @@
 
 This is a RESTful API that provides functionality for managing movies, directors, and categories with secure authentication using JWT. It is deployed at **[api-development-assignment-git-main-panida-paethanoms-projects.vercel.app](https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.app/)**.
 
+# Deployed website for example usage
+[https://api-development-frontend-blond.vercel.app/](https://api-development-frontend-blond.vercel.app/)
+- User may register via /auth/register/
+- User may login via /auth/login/
+- User may view movies without logging in
+- User may filter movies through director's name and category
+- User may create movie by being logged in
+
+
+
 # Table of Contents
 - [Features](#Features)
 - [API Documentation](#API-Documentation)
