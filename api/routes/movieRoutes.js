@@ -86,70 +86,11 @@ router.post('/', authenticateToken, async (req, res) => {
 
         const populatedMovie = await Movie.findById(newMovie._id)
             .populate('director')
-            .populate('gender')
             .populate('category');
 
         res.status(201).json(populatedMovie);
     } catch (err) {
         res.status(400).json({ error: err.message });
-    }
-});
-
-// Updating one movie
-router.put('/:id', getMovie, authenticateToken, async (req, res) => {
-    const { title, year, category, director } = req.body;
-
-    try {
-        const movie = res.movie;
-
-        if (title) {
-            movie.title = title;
-        }
-
-        if (year) {
-            movie.year = year;
-        }
-
-        if (category) {
-
-            let categoryDoc = await Category.findOne({ category_name: new RegExp(`^${category}$`, 'i') });
-            if (!categoryDoc) {
-
-                categoryDoc = new Category({ category_name: category });
-                await categoryDoc.save();
-            }
-            movie.category = categoryDoc._id;
-        }
-
-        if (director) {
-
-            let directorDoc = await Director.findOne({ name: new RegExp(`^${director.name}$`, 'i') });
-
-            if (directorDoc) {
-
-                if (directorDoc.gender.toLowerCase() !== director.gender.toLowerCase()) {
-                    await directorDoc.save();
-                }
-            } else {
-
-                directorDoc = new Director({
-                    name: director.name,
-                });
-                await directorDoc.save();
-            }
-
-            movie.director = directorDoc._id;
-        }
-
-        const updatedMovie = await movie.save();
-
-        const populatedMovie = await Movie.findById(updatedMovie._id)
-            .populate('director')
-            .populate('category');
-
-        res.status(200).json(populatedMovie);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
     }
 });
 
