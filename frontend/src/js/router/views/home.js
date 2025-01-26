@@ -1,5 +1,6 @@
 import { renderMovies } from "@/js/ui/movie/display.js";
 import { getDirectors, getCategories } from "@/js/api/movie/read.js";
+import { onCreateMovie } from "@/js/ui/movie/create.js";
 
 renderMovies();
 getDirectors();
@@ -20,17 +21,26 @@ export async function populateDropdowns() {
 
         directorInput.innerHTML = '<option value="" disabled selected>Choose Director</option>';
         categoryInput.innerHTML = '<option value="" disabled selected>Choose Category</option>';
+        directors.forEach((director) => {
+            const option = document.createElement("option");
+            option.value = director.name;
+            option.textContent = director.name;
+            directorInput.appendChild(option);
+        });
+        categories.forEach((category) => {
+            const option = document.createElement("option");
+            option.value = category.category_name;
+            option.textContent = category.category_name;
+            categoryInput.appendChild(option);
+        });
 
         directorDropdown.innerHTML = '<option value="">All Directors</option>';
         categoryDropdown.innerHTML = '<option value="">All Categories</option>';
-
-
         directors.forEach((director) => {
             const option = document.createElement("option");
             option.value = director.name;
             option.textContent = director.name;
             directorDropdown.appendChild(option);
-            directorInput.appendChild(option);
         });
 
         categories.forEach((category) => {
@@ -38,7 +48,6 @@ export async function populateDropdowns() {
             option.value = category.category_name;
             option.textContent = category.category_name;
             categoryDropdown.appendChild(option);
-            categoryInput.appendChild(option);
         });
     } catch (error) {
         console.error("Error populating dropdowns:", error);
@@ -52,4 +61,7 @@ filterButton.addEventListener("click", (e) => {
     const director = document.getElementById("director-dropdown").value;
     renderMovies(director, category);
 })
+
+const createMovieForm = document.getElementById("create-movie-form");
+createMovieForm.addEventListener("submit", onCreateMovie);
 

@@ -58,7 +58,7 @@
 <!-- Create movie Modal -->
 <div id="create-container"
      class="w-[70%] max-w-[600px] p-8 mb-[100px] bg-card backdrop-blur-2xl rounded-lg">
-    <form id="listing-form"
+    <form id="create-movie-form"
           class="flex flex-col gap-4">
         <h2 id="create-movie-title"
             class="font-h text-accent w-full justify-center items-center text-center font-bold">
@@ -70,6 +70,16 @@
             <input type="text"
                    id="movie-title"
                    name="movie-title"
+                   required
+                   class="border w-full border-gray-300 text-text p-2 mt-2 rounded-md bg-transparent"/>
+        </div>
+
+        <!-- Movie Year -->
+        <div>
+            <label class="text-text" for="movie-year">Year Released</label>
+            <input type="text"
+                   id="movie-year"
+                   name="movie-year"
                    required
                    class="border w-full border-gray-300 text-text p-2 mt-2 rounded-md bg-transparent"/>
         </div>
