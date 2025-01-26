@@ -61,10 +61,6 @@ router.post('/', authenticateToken, async (req, res) => {
     try {
         const { title, year, category, director } = req.body;
 
-        if (!director.gender || !['male', 'female'].includes(director.gender.toLowerCase())) {
-            return res.status(400).json({ error: 'Gender must be either "male" or "female".' });
-        }
-
         let categoryDoc = await Category.findOne({ category_name: new RegExp(`^${category}$`, 'i') });
         if (!categoryDoc) {
             categoryDoc = new Category({ category_name: category });
@@ -75,7 +71,6 @@ router.post('/', authenticateToken, async (req, res) => {
         if (!directorDoc) {
             directorDoc = new Director({
                 name: director.name,
-                gender: director.gender,
             });
             await directorDoc.save();
         }
@@ -91,6 +86,7 @@ router.post('/', authenticateToken, async (req, res) => {
 
         const populatedMovie = await Movie.findById(newMovie._id)
             .populate('director')
+            .populate('gender')
             .populate('category');
 
         res.status(201).json(populatedMovie);
@@ -126,23 +122,18 @@ router.put('/:id', getMovie, authenticateToken, async (req, res) => {
         }
 
         if (director) {
-            if (!director.gender || !['male', 'female'].includes(director.gender.toLowerCase())) {
-                return res.status(400).json({ error: 'Gender must be either "male" or "female".' });
-            }
 
             let directorDoc = await Director.findOne({ name: new RegExp(`^${director.name}$`, 'i') });
 
             if (directorDoc) {
 
                 if (directorDoc.gender.toLowerCase() !== director.gender.toLowerCase()) {
-                    directorDoc.gender = director.gender;
                     await directorDoc.save();
                 }
             } else {
 
                 directorDoc = new Director({
                     name: director.name,
-                    gender: director.gender,
                 });
                 await directorDoc.save();
             }
