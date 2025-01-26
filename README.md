@@ -128,7 +128,6 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
       "year": 2023,
       "director": {
         "name": "Example Director",
-        "gender": "female"
       },
       "category": {
         "category_name": "Drama"
@@ -154,7 +153,6 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
             "director": {
               "_id": "director id"
               "name": "Example Director",
-              "gender": "female"
             },
           }
 ---
@@ -171,7 +169,6 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
       "category": "Drama" //required
       "director": {
         "name": "Example Director", //required
-        "gender": "female" //required //Value must be "male" or "female"
       },
     }
 
@@ -189,7 +186,6 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
         "director": {
           "_id": "director id"
           "name": "Example Director",
-          "gender": "female"
         },
       }
     }
@@ -206,7 +202,6 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
       "year": 2023,
       "director": {
         "name": "Updated Director",
-        "gender": "male" //Value must be "male" or "female"
       },
       "category": "Comedy"
     }
@@ -225,7 +220,6 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
         "director": {
           "_id": "Director-id"
           "name": "Updated Director",
-          "gender": "male"
         },
       }
     }
@@ -247,21 +241,12 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
   - `GET` /directors
   - _No authentication needed_
 
-      - Query Parameters (optional):
-        - Prop: `gender` Type: `String` Usage: Filter director by gender [male, female]
-          <br><br>
-          _An example query filtering:_
-
-          `GET` /directors?gender=&lt;male/female>
-          <br><br>
-
     - Response
 
     ```json
     {
     "_id": "Director id",
     "name": "Director name",
-    "gender": "female"
     }
     
     ---
