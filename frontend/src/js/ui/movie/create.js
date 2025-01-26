@@ -7,11 +7,15 @@ export async function onCreateMovie(event) {
         const title = document.getElementById('movie-title').value.trim();
         const year = document.getElementById('movie-year').value.trim();
         const category = document.getElementById('category-input').value.trim();
-        const director = document.getElementById('director-input').value.trim();
+        const directorName = document.getElementById('director-input').value.trim();
 
-        if (!title || !year || !category || !director) {
+        if (!title || !year || !category || !directorName) {
             throw new Error("All fields are required to create a movie.");
         }
+
+        const director = {
+            name: directorName,
+        };
 
         const result = await createMovie(title, year, category, director);
 
