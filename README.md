@@ -122,7 +122,7 @@ https://api-development-assignment-git-main-panida-paethanoms-projects.vercel.ap
       - Query Parameters (optional):
         - Prop: `director` Type: `String` Usage: Filter by director name
         - Prop: `category` Type: `String` Usage: Filter by category
-        - Prop: `limit` Type: `Number` Usage: Limit number of results
+        - Prop: `limit` Type: `Integer` Usage: Limit number of results
 <br><br>
       _An example query filtering:_
 
